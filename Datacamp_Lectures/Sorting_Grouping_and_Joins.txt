@@ -1,0 +1,186 @@
+
+----------------------------------------------- SORTING, GROUPING and JOINS ---------------------------------------------------
+
+SELECT name 
+FROM people
+ORDER BY name;
+
+
+SELECT name 
+FROM people
+ORDER BY birthdate;
+
+SELECT name, birthdate 
+FROM people
+ORDER BY birthdate;
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+SELECT name, birthdate 
+FROM people
+ORDER BY birthdate;
+
+SELECT title
+FROM films
+WHERE release_year IN (2000, 2012)
+ORDER BY release_year;
+
+SELECT *
+FROM films
+WHERE release_year <> 2015
+ORDER BY duration;
+
+SELECT title, gross
+FROM films
+WHERE title LIKE 'M%'
+ORDER BY title;
+
+SELECT imdb_score, film_id
+FROM REVIEWS
+ORDER BY imdb_score DESC;
+
+SELECT title
+FROM films
+ORDER BY title DESC;
+
+SELECT title, duration
+FROM films
+ORDER BY duration DESC;
+
+----------------------------------------------------------------------------------------------------------------------------
+
+SELECT title, duration
+FROM films
+ORDER BY duration DESC;
+
+SELECT release_year, duration, title
+FROM films
+ORDER BY release_year, duration;
+
+SELECT certification, release_year, title
+FROM films
+ORDER BY certification, release_year;
+
+SELECT name, birthdate
+FROM people
+ORDER BY name, birthdate;
+
+
+
+SELECT release_year, COUNT(*)
+FROM films
+GROUP BY release_year;
+
+SELECT release_year, AVG(duration)
+FROM films
+GROUP BY release_year;
+
+SELECT release_year, MAX(budget)
+FROM films
+GROUP BY release_year;
+
+SELECT imdb_score, COUNT(*)
+FROM reviews
+GROUP BY imdb_score;
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Make sure to always put the ORDER BY clause at the end of your query. You can't sort values that you haven't calculated yet!
+
+
+SELECT release_year, MIN(gross)
+FROM films
+GROUP BY release_year;
+
+SELECT language, SUM(gross)
+FROM films
+GROUP BY language;
+
+SELECT language, SUM(gross)
+FROM films
+WHERE language IS NOT NULL
+GROUP BY language;
+
+
+SELECT country, SUM(budget)
+FROM films
+GROUP BY country;
+
+SELECT release_year, country, MAX(budget)
+FROM films
+GROUP BY release_year, country 
+ORDER BY release_year, country;
+
+SELECT release_year, country, MIN(gross)
+FROM films
+GROUP BY release_year, country 
+ORDER BY release_year, country;
+
+----------------------------------------------------------------------------------------------------------------------------
+This means that if you want to filter based on the result of an aggregate function, you need another way! That's where the HAVING clause comes in. For example,
+
+SELECT release_year
+FROM films
+GROUP BY release_year
+HAVING COUNT(title) > 10;
+
+
+-- You can test out queries here!
+-- 
+SELECT COUNT(*)
+FROM films
+GROUP BY release_year
+HAVING COUNT(release_year) > 200;
+
+
+SELECT release_year, budget, gross
+FROM films
+GROUP BY id;
+
+SELECT release_year, budget, gross
+FROM films
+WHERE release_year > '1990'
+GROUP BY id;
+
+
+SELECT release_year
+FROM films
+WHERE release_year > '1990'
+GROUP BY release_year;
+
+
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > '1990'
+GROUP BY release_year;
+
+
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > '1990'
+GROUP BY release_year
+HAVING AVG(budget) > 60000000
+
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > '1990'
+GROUP BY release_year
+HAVING AVG(budget) > 60000000
+ORDER BY AVG(gross) DESC;
+
+
+
+
+-- select country, average budget, average gross
+SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+-- from the films table
+FROM films
+-- group by country 
+GROUP BY country
+-- where the country has a title count greater than 10
+HAVING COUNT(title) >10 
+-- order by country
+ORDER BY country
+-- limit to only show 5 results
+LIMIT 5;
+
