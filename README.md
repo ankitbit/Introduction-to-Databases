@@ -1,5 +1,8 @@
 ## Welcome to GitHub Pages
 
+[Certificate of Completion : SQL for Data Science](https://github.com/ankitbit/Introduction-to-Databases/blob/master/Datacamp_Lectures/Statement%20of%20Accomplishment.pdf)
+
+
 You can use the [editor on GitHub](https://github.com/ankitbit/Introduction-to-Databases/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
