@@ -31,3 +31,50 @@ AND budget > 100000000
 AND (language = 'Spanish' OR language = 'French')
 
 --------------------------------------------------------- IN ------------------------------------------------------------------
+
+SELECT title, release_year
+FROM films
+WHERE release_year IN (1990, 2000)
+AND duration > 120
+
+
+SELECT title, language
+FROM films
+WHERE language IN ('English', 'French', 'Spanish')
+
+
+SELECT title, certification
+FROM films
+WHERE certification IN ('R', 'NC-17')
+
+
+------------------------------------------------- NULL versus IS NULL--------------------------------------------------------
+
+SELECT name
+FROM people
+WHERE deathdate IS NULL
+
+SELECT title
+from films 
+WHERE budget IS NULL
+
+SELECT COUNT(*)
+FROM films 
+WHERE language IS NULL
+
+------------------------------------------------- LIKE versus NOT LIKE ------------------------------------------------------
+ON THE USE OF '_' and '%' ALONG WITH 'LIKE' AND 'NOT LIKE'
+
+SELECT name
+from people
+WHERE name LIKE 'B%'
+
+SELECT name
+from people
+WHERE name LIKE '_r%'
+
+SELECT name
+from people
+WHERE name NOT LIKE 'A%'
+
+-----------------------------------------------------------------------------------------------------------------------------
